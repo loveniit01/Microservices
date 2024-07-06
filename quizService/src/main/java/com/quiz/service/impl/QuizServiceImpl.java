@@ -30,7 +30,7 @@ public class QuizServiceImpl implements QuizService {
 	public List<Quiz> getAll() {
 		List<Quiz> allQuiz = quizRepository.findAll();
 		return allQuiz.stream().map(quiz -> {
-			quiz.setQuestions(questionClient.getQuestionsForQuiz(quiz.getQuizId()));
+			quiz.setQuestions(questionClient.getQuestionForQuizById(quiz.getQuizId()));
 			return quiz;
 		}).collect(Collectors.toList());
 	}
@@ -38,7 +38,7 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public Quiz get(Long id) {
 		Quiz quiz = quizRepository.findById(id).orElseThrow(() -> new RuntimeException("Quiz not found"));
-		quiz.setQuestions(questionClient.getQuestionsForQuiz(quiz.getQuizId()));
+		quiz.setQuestions(questionClient.getQuestionForQuizById(quiz.getQuizId()));
 
 		return quiz;
 	}

@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
 		if (!byQuizId.isEmpty()) {
 			return byQuizId;
 		} else {
-			throw new UnsupportedOperationException("Unimplemented method 'getByQuizId'");
+			throw new UnsupportedOperationException(String.format("question not present against the quiz id : %s", quizId));
 		}
 	}
 
